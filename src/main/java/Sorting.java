@@ -32,7 +32,19 @@ public class Sorting {
      */
     @SuppressWarnings("unused")
     private static int[] bubbleSort(final int[] array) {
-        return null;
+        boolean flag;
+        do {
+            flag = false;
+            for (int i = 1; i < array.length; i++) {
+                if (array[i] < array[i - 1]) {
+                    int temp = array[i];
+                    array[i] = array[i - 1];
+                    array[i - 1] = temp;
+                    flag = true;
+                }
+            }
+        } while (flag);
+        return array;
     }
 
     /**
@@ -43,7 +55,41 @@ public class Sorting {
      */
     @SuppressWarnings("unused")
     private static int[] selectionSort(final int[] array) {
+        if (array.length == 1) {
+            return array;
+        } else {
+            swap(array, 0, findMin(array));
+        }
         return null;
+    }
+
+    /**
+     * This is a comment.
+     * @param array parameter
+     * @return return
+     */
+    private static int findMin(final int[] array) {
+        int min = array[0];
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+        return min;
+    }
+
+    /**
+     * This is a comment.
+     * @param array parameter
+     * @param x parameter
+     * @param y parameter
+     * @return return
+     */
+    private static int[] swap(final int[] array, final int x, final int y) {
+        int temp = array[x];
+        array[x] = array[y];
+        array[y] = temp;
+        return array;
     }
 
     /**
@@ -176,7 +222,8 @@ public class Sorting {
         int whichAlgorithm;
         while (true) {
             System.out.println("Enter the sorting algorithm that you want to use"
-                    + " (1 for bubble sort, 2 for insertion sort, 3 for merge sort, 4 for built-in): ");
+                    + " (1 for bubble sort, 2 for insertion sort, "
+                    + "3 for merge sort, 4 for built-in): ");
             whichAlgorithm = userInput.nextInt();
             if (whichAlgorithm > 0 && whichAlgorithm < 5) {
                 break;
